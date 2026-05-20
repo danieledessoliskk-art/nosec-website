@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Framework NOSEC - Crittanalisi Frattale Polinomiale</title>
+    <title>Framework NOSEC - Scomposizione Polinomiale Geometrica</title>
     
     <script>
         window.MathJax = {
@@ -33,7 +33,7 @@
             --accent-secondary: #1f6feb;
             --accent-success: #238636;
             
-            /* Colori del simulatore geometrico basati sulla foto rettangoloN.jpg */
+            /* Colori del simulatore geometrico */
             --geo-border: #30363d;
             --geo-bg: rgba(197, 219, 239, 0.95); 
             --geo-text: #000000;
@@ -43,36 +43,34 @@
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
             line-height: 1.8;
             color: var(--text-main);
-            
-            /* Sfondo personalizzato con il nome esatto del tuo file ed effetto copertura */
-            background-image: linear-gradient(rgba(13, 17, 23, 0.75), rgba(13, 17, 23, 0.75)), url('WhatsApp Image 2026-05-20 at 6.04.38 PM.jpeg');
+            background-image: linear-gradient(rgba(13, 17, 23, 0.85), rgba(13, 17, 23, 0.85)), url('WhatsApp Image 2026-05-20 at 6.04.38 PM.jpeg');
             background-repeat: no-repeat;
             background-attachment: fixed;
             background-position: center;
             background-size: cover;
-            
             margin: 0;
             padding: 0;
         }
         
-        .container { max-width: 1000px; margin: 0 auto; padding: 40px 20px; }
+        .container { max-width: 900px; margin: 0 auto; padding: 40px 20px; }
         
-        header { text-align: center; padding: 80px 0 50px; border-bottom: 1px solid var(--border-color); margin-bottom: 50px; }
-        header h1 { font-size: 3rem; color: #ffffff; margin: 0 0 15px; font-weight: 800; }
+        header { text-align: center; padding: 60px 0 30px; border-bottom: 1px solid var(--border-color); margin-bottom: 40px; }
+        header h1 { font-size: 2.8rem; color: #ffffff; margin: 0 0 15px; font-weight: 800; }
         header h1 span { color: var(--accent-primary); }
-        header p.subtitle { font-size: 1.3rem; color: var(--text-muted); max-width: 700px; margin: 0 auto; line-height: 1.5; }
+        header p.subtitle { font-size: 1.2rem; color: var(--text-muted); max-width: 700px; margin: 0 auto; line-height: 1.5; }
         
-        section { margin-bottom: 60px; }
-        h2 { font-size: 2rem; border-bottom: 1px solid var(--border-color); padding-bottom: 12px; margin-top: 50px; color: #ffffff; }
-        h3 { color: var(--accent-primary); margin-top: 35px; font-size: 1.4rem; }
-        p { margin-bottom: 25px; text-align: justify; color: #e6edf3; }
-        ul, ol { margin-bottom: 25px; padding-left: 25px; color: #e6edf3; }
-        li { margin-bottom: 10px; }
+        section { margin-bottom: 40px; }
+        h2 { font-size: 1.8rem; border-bottom: 1px solid var(--accent-primary); padding-bottom: 8px; margin-top: 30px; color: var(--accent-primary); }
+        h3 { color: #ffffff; margin-top: 25px; font-size: 1.3rem; border-left: 3px solid var(--accent-secondary); padding-left: 10px; }
+        p { margin-bottom: 20px; text-align: justify; color: #e6edf3; }
+        ul { margin-bottom: 20px; padding-left: 25px; color: #e6edf3; }
+        li { margin-bottom: 8px; }
         
-        .math-block { overflow-x: auto; padding: 20px; background: rgba(0,0,0,0.4); border-radius: 6px; margin: 20px 0; border: 1px solid var(--border-color); }
+        .math-block { overflow-x: auto; padding: 15px; background: rgba(0,0,0,0.5); border-radius: 6px; margin: 20px 0; border: 1px solid var(--border-color); text-align: center; }
+        
+        .widget-box { background: var(--bg-surface); border: 1px solid var(--border-color); border-radius: 12px; padding: 30px; margin: 25px 0; box-shadow: 0 8px 24px rgba(0,0,0,0.5); backdrop-filter: blur(4px); }
         
         /* PANNELLO DEL SIMULATORE */
-        .widget-box { background: var(--bg-surface); border: 1px solid var(--border-color); border-radius: 12px; padding: 30px; margin: 35px 0; box-shadow: 0 8px 24px rgba(0,0,0,0.5); backdrop-filter: blur(4px); }
         .input-group { display: flex; gap: 15px; margin-bottom: 25px; flex-wrap: wrap; align-items: center; }
         .input-field { display: flex; flex-direction: column; flex: 1; min-width: 180px; gap: 8px; }
         .input-field label { color: var(--text-muted); font-size: 0.9rem; font-weight: 600; }
@@ -86,7 +84,7 @@
         .btn-rand { background: var(--bg-element); border: 1px solid var(--border-color); color: var(--text-main); }
         .btn-rand:hover { background: #30363d; border-color: #8b949e; }
         
-        /* NUOVO LAYOUT GEOMETRICO RIGIDO (STRUTTURA DA FILE rettangoloN.jpg) */
+        /* LAYOUT GEOMETRICO */
         .visual-container { display: flex; justify-content: center; margin-top: 40px; padding: 20px; }
         .modulo-n-container { display: flex; flex-direction: column; border: 2px solid #161b22; background-color: transparent; width: 100%; max-width: 500px; box-shadow: 0 12px 32px rgba(0,0,0,0.6); }
         .geom-block { display: flex; align-items: center; justify-content: center; flex-direction: column; background-color: var(--geo-bg); color: var(--geo-text); font-weight: bold; font-size: 1.2rem; text-align: center; padding: 20px 10px; }
@@ -95,37 +93,62 @@
         .border-right { border-right: 2px solid #161b22; }
         .geom-label { font-size: 0.9rem; margin-top: 6px; font-weight: normal; color: #21262d; }
         
-        /* SEGNAPOSTI IMMAGINI E DOWNLOAD */
+        /* IMMAGINI E DOWNLOAD */
         .image-container { margin: 35px 0; text-align: center; }
         .image-container img { max-width: 100%; height: auto; border-radius: 8px; border: 1px solid var(--border-color); box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
-        .premium-box { background: linear-gradient(135deg, rgba(22,27,34,0.9), rgba(31,111,235,0.15)); border: 1px solid rgba(56, 166, 255, 0.2); border-radius: 12px; padding: 35px; margin: 50px 0; backdrop-filter: blur(4px); }
+        .premium-box { background: linear-gradient(135deg, rgba(22,27,34,0.9), rgba(31,111,235,0.15)); border: 1px solid rgba(56, 166, 255, 0.2); border-radius: 12px; padding: 35px; margin: 40px 0; }
         .btn-link { display: inline-block; padding: 14px 32px; border-radius: 8px; text-decoration: none; font-weight: bold; color: white; background: var(--accent-secondary); margin-right: 15px; margin-bottom: 15px; transition: opacity 0.2s;}
         .btn-link:hover { opacity: 0.9; }
-        .btn-link.success { background: var(--accent-success); }
         
-        footer { text-align: center; padding: 50px 0; color: var(--text-muted); font-size: 0.9rem; border-top: 1px solid var(--border-color); margin-top: 60px; }
+        /* SEZIONE COMMENTI */
+        .comments-section { background: var(--bg-element); border: 1px solid var(--border-color); border-radius: 12px; padding: 30px; margin-top: 50px; }
+        .comment-box { background: var(--bg-base); border: 1px solid var(--border-color); padding: 15px; border-radius: 8px; margin-bottom: 15px; }
+        .comment-header { font-weight: bold; color: var(--accent-primary); margin-bottom: 5px; font-size: 0.9rem; }
+        
+        footer { text-align: center; padding: 40px 0; color: var(--text-muted); font-size: 0.9rem; border-top: 1px solid var(--border-color); margin-top: 40px; }
     </style>
 </head>
 <body>
     <div class="container">
         <header>
             <h1>PROGETTO <span>NOSEC</span></h1>
-            <p class="subtitle">Framework di Scomposizione Polinomiale Frattale e Filtrazione Lineare Asincrona per la Fattorizzazione RSA-Intera</p>
+            <p class="subtitle">Scomposizione Polinomiale Geometrica per la Fattorizzazione RSA-Intera</p>
         </header>
 
         <main>
+            <section id="fondamenti-teorici" class="widget-box">
+                <h2 style="border:none; margin-top:0;">Fondamenti Teorici del Metodo NOSEC</h2>
+                <p>La sicurezza delle chiavi RSA si basa sulla presunta intrattabilità della fattorizzazione dei grandi numeri. I metodi classici tentano di risolvere questo problema con divisioni e tentativi estenuanti. Il <strong>Progetto NOSEC</strong>, al contrario, trasforma il numero in un problema geometrico, cercando la scomposizione esatta dell'area di un rettangolo.</p>
+                
+                <h3>Il Teorema Fondamentale dell'Aritmetica</h3>
+                <p>Questo teorema sancisce che ogni numero intero maggiore di 1 può essere espresso in modo unico come prodotto di numeri primi. È il motivo per cui, dato un enorme modulo pubblico $N$, sappiamo con assoluta certezza che esistono solo due fattori primi esatti ($p$ e $q$) che lo compongono. Il nostro obiettivo è scovarli chiudendo l'equazione.</p>
+                
+                <h3>Il Teorema Fondamentale dell'Algebra</h3>
+                <p>In base a questo teorema, un polinomio di grado <em>n</em> ha esattamente <em>n</em> radici. Nel nostro metodo, cerchiamo le soluzioni intere di un'equazione di secondo grado $x^2 + bx + c$. In questo contesto l'espressione viene scomposta in due <strong>termini irriducibili</strong>: $(x - x_1)$ e $(x - x_2)$. Il prodotto di questi due binomi deve restituire esattamente l'area totale $N$.</p>
+                
+                <h3>La Formula e la Parità del Delta</h3>
+                <p>Impostando l'equazione $N = x^2 + bx + c$, il sistema verifica se la combinazione risolve il problema. Calcolando il discriminante $\Delta = b^2 - 4c$, si verifica un fenomeno fondamentale: <strong>se $\Delta$ è un quadrato perfetto, non è necessario alcun controllo di parità</strong> tra $b$ e $\sqrt{\Delta}$.<br>
+                Il motivo è semplice: poiché $b^2 - \Delta = 4c$, la loro differenza è un multiplo di 4 (quindi un numero pari). Di conseguenza, $b^2$ e $\Delta$ devono avere obbligatoriamente la <strong>stessa parità</strong>. Le loro radici avranno a loro volta la stessa parità, garantendo che le formule $(-b \pm \sqrt{\Delta}) / 2$ restituiscano sempre soluzioni intere perfette.</p>
+            </section>
+
+            <section id="logica-algoritmo">
+                <h2>Il Meccanismo Geometrico e la Ricorsione</h2>
+                
+                <h3>Il caso c = 0</h3>
+                <p>Un teorema diretto del nostro approccio stabilisce che, se dopo aver calcolato lo sbilanciamento otteniamo un residuo nullo ($c = 0$), il modulo $N$ è già fattorizzato. La soluzione si riduce immediatamente a: <strong>$N = x(x+b)$</strong>, rivelando i due fattori senza ulteriori passaggi.</p>
+                
+                <h3>La Dimensione di c e la Ricorsione</h3>
+                <p>Quando estraiamo un valore casuale $x < \sqrt{N}$, la definizione del coefficiente $b = \lfloor(N - x^2)/x\rfloor$ come parte intera garantisce matematicamente che il resto $c$ sia strettamente minore di $x$. Di conseguenza otteniamo <strong>$c < \sqrt{N}$</strong>.<br>
+                Il fatto che $c$ sia un numero estremamente più piccolo di $N$ apre le porte alla via ricorsiva: applichiamo lo stesso identico algoritmo a cascata direttamente su $c$, alla ricerca di quella specifica fattorizzazione in cui la somma delle radici dia lo sbilanciamento primario ($x_1 + x_2 = -b$).</p>
+                
+                <h3>Caso di Studio: La Finestra di Ridondanza (W)</h3>
+                <p>I metodi tradizionali implicano che se "peschi" un numero casuale sbagliato, il tentativo è fallito e devi ricominciare da capo. <strong>Con NOSEC, un'estrazione non esatta porta comunque alla soluzione corretta.</strong> <br>
+                Anche estraendo una variabile di base $x$ che non è un fattore, lo scarto generato ($c$) rientra all'interno di un'area ben definita, chiamata <strong>Finestra di Ridondanza (W)</strong>. All'interno di questa finestra è possibile riapplicare le equazioni, isolare la giusta traiettoria e forzare il collasso dell'algoritmo sui fattori reali di $N$.</p>
+            </section>
+
             <section id="metodo-rettangoli">
-                <h2>1. Il Metodo a Rettangoli: Principio e Simulatore Libero</h2>
-                <p>Il fondamento algebrico del Framework NOSEC si distacca dai crivelli numerici classici. L'algoritmo traduce l'intero composto $N$ in una geometria bidimensionale discreta regolata dall'equazione pilota fondamentale, in cui la base quadratica $x$ è una variabile indipendente definita dall'operatore o estratta casualmente dallo spazio di ricerca:</p>
-                
-                <div class="math-block">
-                    $$N = x^2 + bx + c$$
-                </div>
-                
-                <p>Assegnati il Modulo $N$ e il fattore di base $x$, i coefficienti geometrici strutturali associati vengono estratti in modo deterministico applicando le relazioni:</p>
-                <div class="math-block">
-                    $$b = \left\lfloor\frac{N - x^2}{x}\right\rfloor \quad \text{e} \quad c = N - x^2 - bx$$
-                </div>
+                <h2>Simulatore Geometrico Libero</h2>
+                <p>Inserisci il Modulo $N$ complessivo ed estrai la variabile di base $x$. Il motore algebrico calcolerà istantaneamente lo sbilanciamento $b$ e il residuo $c$ adattando la struttura del rettangolo. Se $c=0$, la fattorizzazione è completa.</p>
                 
                 <div class="widget-box">
                     <div class="input-group">
@@ -139,7 +162,7 @@
                         </div>
                     </div>
                     <div class="actions-row">
-                        <button class="btn-calc" onclick="eseguiScomposizioneNOSEC()">Calcola Scomposizione Geometrica</button>
+                        <button class="btn-calc" onclick="eseguiScomposizioneNOSEC()">Calcola Scomposizione</button>
                         <button class="btn-rand" onclick="estraiXCasuale()">Estrai x Casuale</button>
                     </div>
                     
@@ -148,60 +171,45 @@
                 </div>
             </section>
 
-            <section id="morfologia-frattale">
-                <h2>2. Morfologia Frattale e la "Finestra di Ridondanza"</h2>
-                <p>Nelle architetture tradizionali, lo scostamento lineare introduce un errore distruttivo che obbliga al backtracking continuo. Il Framework NOSEC risolve questo collo di bottiglia introducendo la <strong>Finestra di Ridondanza</strong>.</p>
-                <p>Quando il residuo locale $c$ non permette una fattorizzazione diretta, l'errore viene mappato all'interno di un inviluppo geometrico auto-similare, trasformando il modulo in una ramificazione strutturata (albero frattale) dove le proprietà di congruenza si riflettono sulle foglie microscopiche.</p>
-                
+            <section id="grafica-factapp">
+                <h2>Struttura del Rettangolo Frattale</h2>
+                <p>Se $\Delta$ non è un quadrato perfetto, l'algoritmo riapplica la scomposizione sul residuo $c$ (garantito essere minore di $\sqrt{N}$), scendendo nei nodi inferiori come illustrato di seguito:</p>
                 <div class="image-container">
-                    <img src="rettangolo_frattale_factapp.png" alt="Morfologia dello Spazio Frattale NOSEC">
+                    <img src="rettangolo_frattale_factapp.png" alt="Rettangolo Frattale NOSEC">
                 </div>
-                
-                <p>L'interconnessione dinamica tra i nodi dell'albero permette di ereditare i vincoli di fattorizzazione del livello precedente senza alcuna perdita di informazione, isolando il calcolo all'interno del sottosistema locale.</p>
-            </section>
-
-            <section id="caso-studio">
-                <h2>3. Caso di Studio: Risoluzione Deterministica di un Modulo di Test</h2>
-                <p>Per validare empiricamente la tenuta strutturale del modello, esaminiamo l'esecuzione controllata sul semiprimo $N = 10403$. L'applicazione della sequenza ricorsiva NOSEC si articola nelle seguenti fasi geometriche discrete:</p>
-                
-                <ol>
-                    <li><strong>Inizializzazione della Radice:</strong> Il sistema isola la componente quadratica impostando o estraendo la base $x = 101$.</li>
-                    <li><strong>Estrazione dello Sbilanciamento:</strong> Viene quantificato lo scostamento assiale primario applicando la relazione: $b = \lfloor (10403 - 101^2) / 101 \rfloor = \lfloor 202 / 101 \rfloor = 2$.</li>
-                    <li><strong>Isolamento del Residuo Foglia:</strong> L'equazione determina il valore critico di pendenza: $c = 10403 - 101^2 - (2 \times 101) = 0$.</li>
-                </ol>
-                
-                <p>Nel caso in cui l'albero si propaghi fino al livello foglia profondo $c_3$, il sistema isola un insieme confinato di soli 12 divisori interi. L'applicazione simultanea del filtro di coerenza lineare ($x_{3,1} + x_{3,2} = b_3$) opera una potatura istantanea, escludendo matematicamente 11 combinazioni non conformi. L'unica traiettoria superstite attiva la risalita deterministica lungo i rami dell'albero, rivelando i fattori primi originari senza necessità di calcolo esaustivo o stocastico.</p>
-            </section>
-
-            <section id="analisi-teorica">
-                <h2>4. Analisi Computazionale e Probabilità Condizionata</h2>
-                <p>La complessità globale non è legata in modo esponenziale alla lunghezza binaria dell'intero monolitico iniziale, ma è dominata esclusivamente dal calcolo locale effettuato sul residuo foglia terminale, riducendo l'onere operativo alla notazione $O(\sqrt{c_n})$. Una volta determinata la coordinata della foglia, la fase di risalita verso la radice si risolve in tempo lineare costante pari a $O(1)$ per ogni livello.</p>
-                
-                <h3>Studio di Probabilità Condizionata e Scalabilità di Rete</h3>
-                <p>La natura architetturalmente asincrona del Progetto NOSEC garantisce un'efficienza di scaling perfettamente lineare nel calcolo distribuito senza overhead di sincronizzazione. Definita $P(S | \text{nodo}_1)$ la probabilità condizionata che un singolo dispositivo isoli il match geometrico corretto all'interno della sua specifica Work Unit in un intervallo temporale limitato $\tau$, l'estensione del cluster a $k = 1000$ nodi operanti in parallelo produce una probabilità di successo globale cumulativa pari a:</p>
-                
-                <div class="math-block">
-                    $$P(S | 1000 \text{ nodi}) = \sum_{i=1}^{1000} P(S | \text{nodo}_i) \approx 1000 \cdot P(S | \text{nodo}_1)$$
-                </div>
-                
-                <p>Questo formalismo dimostra che l'immissione di 1000 dispositivi riduce il tempo complessivo di elaborazione necessario a confermare o escludere lo spazio dei vettori a esattamente $\frac{1}{1000}$ del tempo originario, azzerando i colli di bottiglia causati dalla congestione della rete.</p>
             </section>
 
             <section id="risorse">
                 <div class="premium-box">
-                    <h3 style="color: #ffffff; margin-top: 0; margin-bottom: 15px;">Area Rilasci Ufficiali</h3>
-                    <p>Accedi agli strumenti software compilati per l'esecuzione distribuita del framework ed esamina la documentazione matematica completa.</p>
+                    <h3 style="color: #ffffff; margin-top: 0; margin-bottom: 15px;">Area Risorse e Download</h3>
+                    <p>Accedi agli strumenti software compilati per l'esecuzione del framework sui cluster ed esamina la documentazione scientifica completa.</p>
                     <div style="margin-top: 25px;">
-                        <a href="#" class="btn-link success">🤖 Scarica App Client (Android APK)</a>
+                        <a href="#" class="btn-link" style="background: var(--accent-success);">🤖 Scarica App Client (Android APK)</a>
                         <a href="#" class="btn-link">💻 Terminale Desktop (Windows / Linux)</a>
                         <a href="https://gumroad.com" target="_blank" class="btn-link" style="background: transparent; border: 1px solid var(--border-color);">📄 Whitepaper Accademico Completo ($9.99)</a>
                     </div>
                 </div>
             </section>
+
+            <section id="discussione" class="comments-section">
+                <h2 style="border:none; margin-top:0; color:#fff;">Spazio Discussione e Commenti</h2>
+                <p style="font-size: 0.95rem;">Lascia un commento, condividi i tuoi test o richiedi chiarimenti matematici sulla finestra di ridondanza e sul calcolo iterativo.</p>
+                
+                <div class="comment-box">
+                    <div class="comment-header">Admin (Autore)</div>
+                    <div>Benvenuti nella pagina ufficiale del Progetto NOSEC. Lo spazio commenti è ora attivo per discutere le implementazioni su Galileo 100.</div>
+                </div>
+                
+                <div style="margin-top: 25px;">
+                    <textarea style="width: 100%; padding: 15px; border-radius: 8px; background: var(--bg-base); border: 1px solid var(--border-color); color: #fff; font-family: inherit; margin-bottom: 15px;" rows="4" placeholder="Scrivi un commento..."></textarea>
+                    <button style="padding: 10px 20px; background: var(--accent-secondary); color: white; border: none; border-radius: 6px; cursor: pointer; font-weight: bold;">Invia Commento</button>
+                </div>
+            </section>
+
         </main>
 
         <footer>
-            <p>&copy; 2026 Progetto NOSEC • Scomposizione Polinomiale Frattale Intera • Tutti i diritti riservati.</p>
+            <p>&copy; 2026 Progetto NOSEC • Scomposizione Polinomiale Geometrica • Tutti i diritti riservati.</p>
         </footer>
     </div>
 
@@ -210,7 +218,6 @@
             const valN = parseInt(document.getElementById('inputN').value);
             const valX = parseInt(document.getElementById('inputX').value);
             
-            // Validazione degli input inseriti dall'utente
             if (isNaN(valN) || valN < 4) {
                 alert("Errore: Inserire un valore di N intero positivo maggiore o uguale a 4.");
                 return;
@@ -220,47 +227,43 @@
                 return;
             }
             
-            // LOGICA DI CALCOLO FORMALIZZATA
+            // Calcolo dei coefficienti geometrici
             const b = Math.floor((valN - (valX * valX)) / valX);
             const c = valN - (valX * valX) - (b * valX);
             
-            // Aggiornamento stringa matematica tramite MathJax
+            // Aggiornamento stringa matematica
             document.getElementById('mathResult').innerHTML = `\\( N = ${valN} \\implies ${valX}^2 + ${b}(${valX}) + (${c}) \\)`;
             if (window.MathJax && window.MathJax.typesetPromise) {
                 MathJax.typesetPromise();
             }
             
-            // COSTRUZIONE GEOMETRICA RIGIDA (Struttura esatta dal file rettangoloN.jpg)
+            // Generazione del blocco geometrico
             const area = document.getElementById('visualArea');
             area.innerHTML = '';
             
-            // Creazione della scatola contenitore monolitica di N
             const containerN = document.createElement('div');
             containerN.className = 'modulo-n-container';
             
-            // --- PARTE SUPERIORE: AREA RESIDUA "c" (Estesa su tutta la larghezza) ---
+            // AREA RESIDUA c
             const rigaTop = document.createElement('div');
             rigaTop.className = 'geom-block row-top';
             rigaTop.innerHTML = `C <div class="geom-label">valore: ${c}</div>`;
             containerN.appendChild(rigaTop);
             
-            // --- PARTE INFERIORE: RETTANGOLI x² E bx AFFIANCATI ---
+            // RETTANGOLI x² E bx
             const rigaBottom = document.createElement('div');
             rigaBottom.className = 'row-bottom';
             
-            // Blocco di sinistra: x²
             const bloccoX2 = document.createElement('div');
             bloccoX2.className = 'geom-block';
-            bloccoX2.style.flex = "1"; // Proporzione bilanciata flessibile
+            bloccoX2.style.flex = "1";
             bloccoX2.innerHTML = `x² <div class="geom-label">${valX} × ${valX}</div>`;
             
-            // Blocco di destra: bx (viene renderizzato graficamente anche se b è negativo o nullo per mantenere la coerenza visiva)
             const bloccoBx = document.createElement('div');
             bloccoBx.className = 'geom-block';
-            bloccoBx.style.flex = "1.3"; // Dimensione leggermente maggiore in larghezza come nello schema
+            bloccoBx.style.flex = "1.3"; 
             bloccoBx.innerHTML = `bx <div class="geom-label">${b} × ${valX}</div>`;
             
-            // Applica il bordo di separazione verticale interno se coesistono i blocchi
             bloccoX2.classList.add('border-right');
             
             rigaBottom.appendChild(bloccoX2);
@@ -270,18 +273,16 @@
             area.appendChild(containerN);
         }
 
-        // Estrazione casuale della variabile di base x nello spazio del modulo N
         function estraiXCasuale() {
             const valN = parseInt(document.getElementById('inputN').value);
             if (isNaN(valN) || valN < 4) {
                 alert("Inserisci prima un modulo N valido.");
                 return;
             }
-            // Definisce un range logico intorno alla radice quadrata del modulo corrente
-            const radiceApprossimata = Math.floor(Math.sqrt(valN));
-            const deltaRange = Math.floor(radiceApprossimata * 0.5) || 5;
-            const minX = Math.max(2, radiceApprossimata - deltaRange);
-            const maxX = radiceApprossimata + deltaRange;
+            // Estrazione di x con garanzia che x < sqrt(N) per avere c < sqrt(N)
+            const radice = Math.floor(Math.sqrt(valN));
+            const minX = Math.max(2, Math.floor(radice * 0.5)); 
+            const maxX = radice; // x è sempre <= sqrt(N)
             
             const xCasuale = Math.floor(Math.random() * (maxX - minX + 1)) + minX;
             
@@ -289,7 +290,6 @@
             eseguiScomposizioneNOSEC();
         }
 
-        // Boot iniziale del simulatore geometrico
         window.onload = eseguiScomposizioneNOSEC;
     </script>
 </body>
