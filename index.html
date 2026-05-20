@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Progetto NOSEC - Crittanalisi Frattale</title>
+    
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']]
+            },
+            svg: { fontCache: 'global' }
+        };
+    </script>
+    <script type="text/javascript" id="MathJax-script" async
+        src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js">
+    </script>
+
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            color: #e0e0e0;
+            background-color: #0d1117;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        header {
+            border-bottom: 1px solid #30363d;
+            padding-bottom: 20px;
+            margin-bottom: 40px;
+        }
+        h1 {
+            color: #58a6ff;
+            font-size: 2.2rem;
+            margin-bottom: 10px;
+        }
+        h2 {
+            color: #c9d1d9;
+            font-size: 1.6rem;
+            margin-top: 40px;
+            border-bottom: 1px solid #21262d;
+            padding-bottom: 8px;
+        }
+        h3 {
+            color: #1f6feb;
+            font-size: 1.25rem;
+        }
+        p {
+            color: #8b949e;
+            text-align: justify;
+        }
+        blockquote {
+            background-color: #161b22;
+            border-left: 4px solid #1f6feb;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+        blockquote p {
+            color: #c9d1d9;
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        
+        <header>
+            <h1>Progetto NOSEC</h1>
+            <p><strong>Scomposizione Polinomiale Frattale e Fattorizzazione Intera</strong></p>
+        </header>
+
+        <main>
+            <section>
+                <h2>Sezione 1: L'Espansione Ricorsiva Polinomiale (La Discesa)</h2>
+                
+                <p>Il nucleo fondamentale del framework NOSEC risiede nel rifiuto dell'approccio crittanalitico tradizionale. I metodi classici di fattorizzazione tentano di aggredire il modulo intero $N$ considerandolo come un blocco monolitico e statico; questo approccio sbatte inevitabilmente contro il muro della complessità computazionale esponenziale non appena la lunghezza del numero supera i parametri standard.</p>
+                
+                <p>NOSEC scardina questo limite imponendo una trasformazione dinamica: il problema della fattorizzazione viene convertito in una struttura geometrico-frattale auto-similare, costringendo il modulo originario a frammentarsi in sottoproblemi progressivamente più piccoli attraverso una discesa ricorsiva condizionata.</p>
+
+                <h3>L'Equazione Pilota e la Genesi del Residuo</h3>
+                
+                <p>L'algoritmo avvia la scansione partendo da una coordinata di base $x$ arbitraria, geometricamente prossima alla radice quadrata del modulo da fattorizzare ($x \approx \sqrt{N}$). La relazione fondamentale tra il modulo $N$, la base scelta $x$ e il coefficiente di sbilanciamento $b$ viene definita dall'equazione polinomiale di secondo grado:</p>
+                
+                $$N = x^2 + bx + c$$
+                
+                <p>In questa formulazione, il coefficiente di sbilanciamento intero $b$ rappresenta lo scostamento lineare ed è calcolato deterministicamente tramite l'operatore di parte intera:</p>
+                
+                $$b = \left\lfloor \frac{N - x^2}{x} \right\rfloor$$
+                
+                <p>L'elemento chiave della discesa è il <strong>residuo locale $c$</strong>, ovvero la porzione di area computazionale che eccede il quadrato e il rettangolo di sbilanciamento:</p>
+                
+                $$c = N - x^2 - bx$$
+                
+                <p>Per le proprietà intrinseche della divisione euclidea e della scelta della base, il residuo $c$ è soggetto a un vincolo matematico rigido e inviolabile: esso è strettamente minore della base di calcolo del livello corrente. Al primo livello di discesa, abbiamo la certezza assoluta che:</p>
+                
+                $$c < \sqrt{N}$$
+                
+                <p>Se applicato a chiavi crittografiche reali come RSA-2048 (dove $N$ è un numero a 2048 bit), questo singolo passaggio abbatte istantaneamente l'ordine di grandezza del target, isolando un residuo $c$ la cui dimensione non può superare i 1024 bit.</p>
+
+                <h3>Lo Sviluppo Telescopico Frattale</h3>
+                
+                <p>La vera potenza del metodo si manifesta quando il processo viene applicato ricorsivamente sul residuo appena isolato. Il valore $c$ non viene trattato come un semplice scarto, ma diviene il modulo radice di un nuovo sottoproblema indipendente.</p>
+                
+                <p>Il sistema genera così un albero di discesa profondo $n$ livelli, dove ogni residuo intermedio $c_i$ viene frammentato utilizzando una nuova base locale $x_i$ e un nuovo coefficiente $b_i$, secondo la medesima legge geometrica:</p>
+                
+                <ul>
+                    <li><strong>Livello 1:</strong> $N = x^2 + bx + c_1 \quad (\text{con } c_1 < \sqrt{N})$</li>
+                    <li><strong>Livello 2:</strong> $c_1 = x_1^2 + b_1 x_1 + c_2 \quad (\text{con } c_2 < \sqrt{c_1})$</li>
+                    <li><strong>Livello 3:</strong> $c_2 = x_2^2 + b_2 x_2 + c_3 \quad (\text{con } c_3 < \sqrt{c_2})$</li>
+                </ul>
+                
+                <p>Sostituendo iterativamente ogni livello all'interno dell'equazione pilota originaria, si ottiene l'<strong>Espansione Telescopica Globale</strong> di $N$:</p>
+                
+                $$N = x^2 + bx + x_1^2 + b_1 x_1 + x_2^2 + b_2 x_2 + \dots + x_n^2 + b_n x_n + c_{n+1}$$
+
+                <h3>Il Collasso dello Spazio di Ricerca</h3>
+                
+                <p>Questo sviluppo ridefinisce radicalmente la topologia del problema. Poiché la relazione d'ordine $c_i < \sqrt{c_{i-1}}$ si applica a ogni singolo passaggio, la dimensione numerica dei residui subisce un crollo iper-esponenziale lungo l'asse della discesa.</p>
+                
+                <blockquote>
+                    <p>Raggiunto il livello foglia designato $n$, lo spazio di ricerca locale $|S_n|$ si riduce a un dominio microscopicamente piccolo rispetto all'immensità del modulo radice iniziale. In questo sotto-dominio profondo, la densità di soluzioni utili ($W$) rispetto allo spazio locale subisce un'inversione proporzionale asimmetrica, tendendo alla saturazione completa:</p>
+                    <br>
+                    $$\lim_{i \to n} \frac{W_i}{|S_i|} \approx 1$$
+                </blockquote>
+                
+                <p>Il collo di bottiglia computazionale viene così rimosso dalla fase di discesa: i nodi della rete distribuita non devono consumare risorse nel tentativo di localizzare coordinate in uno spazio immenso, poiché al fondo dell'espansione frattale l'individuazione dei fattori locali è un'operazione a complessità quasi nulla e ad altissima densità di successo.</p>
+            </section>
+            <section>
+                <h2>Sezione 2: La Risalita per Step Deterministici (Filtrazione Combinatoria)</h2>
+                
+                <p>Una volta completata la discesa e isolato il residuo profondo al livello foglia $n$, il framework NOSEC inverte l'asse computazionale. Se la fase di discesa opera per scomposizione geometrica, la fase di risalita agisce tramite un algoritmo di filtrazione deterministica per step successivi, eliminando alla radice la necessità di effettuare tentativi probabilistici o scansioni alla cieca.</p>
+                
+                <p>Il principio cardine di questa fase risiede nella coordinazione rigorosa tra la teoria dei divisori e i vincoli lineari imposti dai coefficienti di sbilanciamento strutturali.</p>
+
+                <h3>Step 1: La Fattorizzazione Esaustiva del Residuo Foglia</h3>
+                
+                <p>Al livello foglia $n$, il residuo locale $c_n$ si trova confinato nel suo punto di massima contrazione numerica. A causa del crollo iper-esponenziale descritto nella sezione precedente, il valore di $c_n$ è microscopicamente piccolo rispetto al modulo radice originario $N$.</p>
+                
+                <p>Sfruttando questa asimmetria di scala, il singolo nodo della rete distribuita non tenta di individuare una coppia casuale di fattori. Al contrario, esegue una fattorizzazione esaustiva locale per determinare l'insieme completo e finito di tutti i divisori di $c_n$. Se il residuo possiede $m$ fattori primi, il sistema mappa istantaneamente tutte le $D$ coppie di divisori possibili tali che:</p>
+                
+                $$x_{n,1} \cdot x_{n,2} = c_n$$
+                
+                <p>Il costo computazionale di questo step è infinitesimo, permettendo al dispositivo di operare in locale senza generare latenza di rete o richiedere scambio di dati con il server centrale.</p>
+
+                <h3>Step 2: Filtrazione Lineare Istantanea</h3>
+                
+                <p>Ottenuto l'insieme delle $D$ coppie candidate, il sistema applica il primo grande filtro deterministico. Affinché una coppia di divisori $(x_{n,1}, x_{n,2})$ sia algebricamente valida per iniziare la risalita, essa deve soddisfare in modo esatto il vincolo lineare imposto dal coefficiente di sbilanciamento $b_n$ calcolato durante la discesa:</p>
+                
+                $$x_{n,1} + x_{n,2} = b_n$$
+                
+                <p>La scansione di questo vincolo avviene in tempo lineare rispetto al numero di divisori. Questo step intercetta la traiettoria numerica corretta con una certezza matematica pari al 100%:</p>
+                
+                <ul>
+                    <li><strong>Se la coppia esiste:</strong> Viene validata immediatamente e i due divisori diventano i parametri strutturali per sbloccare il livello superiore $c_{n-1}$.</li>
+                    <li><strong>Se nessuna coppia soddisfa il vincolo:</strong> Il ramo viene dichiarato matematicamente sterile. Il nodo interrompe l'esecuzione e rigetta la coordinata $x$ iniziale, azzerando lo spreco di memoria e di clock su piste false.</li>
+                </ul>
+
+                <h3>La Congruenza di Coerenza Globale</h3>
+                
+                <p>Le coppie che superano il filtro locale iniziano la risalita telescopica verso i nodi superiori dell'albero. Il successo della risalita non è affidato al caso, ma è vincolato al rispetto di una catena di equazioni lineari concatenate. L'intero sistema di filtrazione, dal livello foglia fino al modulo radice $N$, è governato da una singola congruenza fondamentale rispetto al fattore primo cercato $p$:</p>
+                
+                $$\sum_{i=0}^{n} x_i(x_i + b_i) \equiv 0 \pmod p$$
+                
+                <p>Ove, per coerenza algoritmica, poniamo $x_0 = x$ e $b_0 = b$. Se l'uguaglianza dei coefficienti strutturali si spezza in un qualunque punto della risalita (ad esempio al livello $n-3$), il macro-ramo collassa e viene scartato.</p>
+                
+                <p>L'infrastruttura distribuita cessa così di essere un agglomerato di calcolo bruto: ogni smartphone analizza in modo deterministico le foglie microscopiche del frattale, e usa la struttura dei coefficienti $b_i$ come barriere logiche interconnesse, permettendo la risalita solo all'unica configurazione geometrica coerente con i fattori primi di $N$.</p>
+            </section>
+        </main>
+
+    </div>
+
+</body>
+</html>
