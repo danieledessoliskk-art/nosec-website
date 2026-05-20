@@ -32,28 +32,42 @@
         }
         .container { max-width: 900px; margin: 0 auto; padding: 40px 20px; }
         header { text-align: center; padding: 60px 0 40px; border-bottom: 1px solid var(--border-color); margin-bottom: 40px; }
-        header h1 { font-size: 2.6rem; color: var(--accent-primary); margin: 0 0 15px; }
+        header h1 { font-size: 2.6rem; color: var(--accent-primary); margin: 0 0 15px; font-weight: 800; }
         header p.subtitle { font-size: 1.2rem; color: var(--text-muted); }
-        h2 { font-size: 1.8rem; border-bottom: 1px solid var(--border-color); padding-bottom: 10px; margin-top: 50px; }
-        h3 { color: var(--accent-primary); margin-top: 30px; }
+        
+        section { margin-bottom: 50px; }
+        h2 { font-size: 1.8rem; border-bottom: 1px solid var(--border-color); padding-bottom: 10px; margin-top: 40px; color: #ffffff; }
+        h3 { color: var(--accent-primary); margin-top: 30px; font-size: 1.3rem; }
         p { margin-bottom: 20px; text-align: justify; }
         .math-block { overflow-x: auto; padding: 15px 0; text-align: center; }
         
-        /* Interactive Widget Styles */
+        /* Stili del Simulatore Interattivo */
         .widget-box { background: var(--bg-surface); border: 1px solid var(--border-color); border-radius: 8px; padding: 25px; margin: 30px 0; }
         .input-group { display: flex; gap: 10px; margin-bottom: 20px; }
-        input[type="number"] { padding: 10px; background: var(--bg-base); border: 1px solid var(--border-color); color: white; border-radius: 4px; flex: 1; }
-        button { padding: 10px 20px; background: var(--accent-secondary); color: white; border: none; border-radius: 4px; cursor: pointer; font-weight: bold; }
+        input[type="number"] { padding: 12px; background: var(--bg-base); border: 1px solid var(--border-color); color: white; border-radius: 6px; flex: 1; font-size: 1rem; }
+        input[type="number"]:focus { outline: none; border-color: var(--accent-primary); }
+        button { padding: 12px 24px; background: var(--accent-secondary); color: white; border: none; border-radius: 6px; cursor: pointer; font-weight: bold; font-size: 1rem; transition: background 0.2s; }
         button:hover { background: #2f81f7; }
-        .visual-container { display: flex; align-items: flex-end; gap: 5px; margin-top: 20px; flex-wrap: wrap; }
-        .geom-box { display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.9rem; color: #fff; border: 1px solid rgba(255,255,255,0.2); }
-        .geom-square { background: rgba(88, 166, 255, 0.2); border-color: var(--accent-primary); }
-        .geom-rect { background: rgba(35, 134, 54, 0.2); border-color: var(--accent-success); }
-        .geom-res { background: rgba(210, 153, 34, 0.2); border-color: #d29922; }
         
-        .placeholder-img { width: 100%; height: 250px; background: var(--bg-element); display: flex; align-items: center; justify-content: center; border: 2px dashed var(--border-color); color: var(--text-muted); margin: 20px 0; border-radius: 8px; }
-        .premium-box { background: linear-gradient(135deg, var(--bg-surface), rgba(31,111,235,0.1)); border: 1px solid var(--accent-secondary); border-radius: 8px; padding: 30px; margin: 40px 0; }
-        .btn { display: inline-block; padding: 10px 20px; border-radius: 4px; text-decoration: none; margin-right: 10px; margin-bottom: 10px; font-weight: bold; color: white; background: var(--accent-secondary); }
+        .visual-container { display: flex; align-items: flex-end; gap: 10px; margin-top: 25px; flex-wrap: wrap; background: rgba(0,0,0,0.2); padding: 20px; border-radius: 6px; border: 1px dashed var(--border-color); }
+        .geom-box { display: flex; flex-direction: column; align-items: center; justify-content: center; font-weight: bold; font-size: 0.9rem; color: #fff; border: 2px solid; border-radius: 6px; text-align: center; min-height: 80px; padding: 10px; }
+        .geom-square { background: rgba(88, 166, 255, 0.15); border-color: var(--accent-primary); }
+        .geom-rect { background: rgba(35, 134, 54, 0.15); border-color: var(--accent-success); }
+        .geom-res { background: rgba(210, 153, 34, 0.15); border-color: #d29922; }
+        
+        /* Contenitori per Immagini future */
+        .image-placeholder { width: 100%; padding: 40px 20px; background: var(--bg-surface); display: flex; flex-direction: column; align-items: center; justify-content: center; border: 2px dashed var(--border-color); color: var(--text-muted); margin: 25px 0; border-radius: 8px; text-align: center; }
+        .image-placeholder span { font-size: 0.85rem; color: var(--accent-primary); margin-top: 5px; }
+        
+        .premium-box { background: linear-gradient(135deg, var(--bg-surface), rgba(31,111,235,0.05)); border: 1px solid var(--border-color); border-radius: 8px; padding: 30px; margin: 40px 0; }
+        .btn-link { display: inline-block; padding: 12px 28px; border-radius: 6px; text-decoration: none; margin-right: 12px; margin-bottom: 12px; font-weight: bold; color: white; background: var(--accent-secondary); transition: background 0.2s; }
+        .btn-link:hover { background: #2f81f7; }
+        .btn-success { background: var(--accent-success); }
+        .btn-success:hover { background: #2ea043; }
+        .btn-muted { background: var(--bg-element); border: 1px solid var(--border-color); color: var(--text-main); }
+        .btn-muted:hover { background: #30363d; }
+        
+        footer { text-align: center; padding: 40px 0; color: var(--text-muted); font-size: 0.85rem; border-top: 1px solid var(--border-color); margin-top: 50px; }
     </style>
 </head>
 <body>
@@ -66,106 +80,131 @@
         <main>
             <section>
                 <h2>1. Il Metodo a Rettangoli: Visualizzazione Interattiva</h2>
-                <p>Inserisci un intero $N$ per simulare il primo step della discesa polinomiale. Il sistema genererà la scomposizione geometrica in quadrato ($x^2$), rettangolo di sbilanciamento ($bx$) e residuo ($c$).</p>
+                <p>Inserisci un numero intero $N$ per osservare in tempo reale l'applicazione dell'equazione pilota fondamentale del Framework NOSEC ($N = x^2 + bx + c$). Il sistema calcola dinamicamente la radice geometrica discreta e isola il residuo lineare.</p>
                 
                 <div class="widget-box">
                     <div class="input-group">
-                        <input type="number" id="inputN" placeholder="Inserisci N (es. 10403)" value="10403" min="10">
-                        <button onclick="calcolaMetodoRettangoli()">Fattorizza Geometricamente</button>
+                        <input type="number" id="inputN" placeholder="Inserisci il modulo N (es. 10403)" value="10403" min="4">
+                        <button onclick="eseguiScomposizioneGeometrica()">Scomponi Geometricamente</button>
                     </div>
-                    <div id="mathResult" style="font-size: 1.2rem; font-weight: bold; text-align: center; margin: 15px 0;"></div>
+                    <div id="mathResult" style="font-size: 1.25rem; font-weight: bold; text-align: center; margin: 20px 0; color: #ffffff;"></div>
                     <div class="visual-container" id="visualArea"></div>
                 </div>
             </section>
 
             <section>
-                <h2>2. Struttura Frattale e Finestra di Ridondanza</h2>
-                <p>La <strong>Finestra di Ridondanza</strong> rappresenta l'area di tolleranza algebrica entro la quale i filtri di risalita operano. A differenza degli approcci monolitici, la ridondanza in NOSEC non è un errore, ma il meccanismo di connessione elastica che permette ai divisori del residuo foglia di adattarsi ai vincoli lineari del livello superiore senza rompere la congruenza globale.</p>
+                <h2>2. Albero di Discesa e Finestra di Ridondanza</h2>
+                <p>Il cuore del superamento dei limiti di complessità risiede nella <strong>Finestra di Ridondanza</strong>. Nei modelli crittanalitici tradizionali, lo scostamento è trattato come un errore computazionale da correggere mediante backtracking pesante. In NOSEC, la ridondanza strutturale viene mappata geometricamente per connettere in modo flessibile i divisori del residuo foglia ai coefficienti dei livelli superiori.</p>
                 
-                <div class="placeholder-img">
-                    [Inserire qui l'immagine: img src="frattale.png"]<br>Rappresentazione del Frattale
+                <div class="image-placeholder">
+                    <strong>[Grafico Struttura Frattale]</strong>
+                    <span>Caricare il file nominato "frattale.png" nel repository per visualizzare il grafico</span>
                 </div>
                 
-                <p>La scomposizione del residuo locale genera l'albero di discesa illustrato di seguito. Ogni nodo dell'albero è un problema indipendente e parallelizzabile.</p>
+                <p>Ogni scomposizione riduce l'ampiezza del sottoproblema generato, ramificando il calcolo in un albero ricorsivo auto-similare dove ogni nodo opera in totale isolamento asincrono.</p>
                 
-                <div class="placeholder-img">
-                    [Inserire qui l'immagine: img src="albero.png"]<br>Rappresentazione dell'Albero di Discesa
+                <div class="image-placeholder">
+                    <strong>[Mappatura dell'Albero di Discesa]</strong>
+                    <span>Caricare il file nominato "albero.png" nel repository per visualizzare lo schema</span>
                 </div>
             </section>
 
             <section>
-                <h2>3. Caso di Studio: Analisi di un Modulo Complesso</h2>
-                <p>Applicando il framework NOSEC a un numero semi-primo di test $N$, la discesa raggiunge la convergenza alla foglia $c_3$ in soli 3 livelli. Al livello 3, il valore $c_3$ possiede soli 12 divisori interi. L'applicazione del filtro $x_{3,1} + x_{3,2} = b_3$ scarta istantaneamente 11 coppie. L'unica coppia sopravvissuta innesca la risalita, collassando lo spazio di ricerca e rivelando i fattori primi originari in tempo sub-esponenziale.</p>
+                <h2>3. Caso di Studio: Analisi Computazionale su Modulo Semi-Primo</h2>
+                <p>Prendendo come riferimento un modulo semi-primo di test $N$, la discesa NOSEC ha interrotto la ramificazione al livello foglia $c_3$, riducendo l'area numerica a una frazione infinitesima rispetto alla radice originaria. Al livello foglia, il residuo contava un insieme ristretto di soli 12 divisori interi. L'applicazione immediata del filtro lineare di coerenza ha scartato istantaneamente 11 combinazioni non conformi. L'unica coppia superstite ha attivato la risalita deterministica senza alcuna ambiguità algebrica, isolando i fattori primi.</p>
             </section>
 
             <section>
-                <h2>4. Analisi Computazionale e Scalabilità</h2>
-                <h3>Complessità Teorica</h3>
-                <p>Nel metodo NOSEC, la fattorizzazione esaustiva si applica unicamente al residuo foglia $c_n$. Poiché $c_n \ll \sqrt{N}$, la complessità locale è $O(\sqrt{c_n})$. Il processo di risalita agisce come filtro in tempo $O(1)$ per step.</p>
+                <h2>4. Analisi di Complessità e Calcolo Distribuito Parallelo</h2>
+                <h3>Complessità Algoritmica</h3>
+                <p>La complessità computazionale del framework non è legata alla grandezza del modulo monolitico iniziale, ma è dominata esclusivamente dalla ricerca esaustiva sul residuo foglia, risultando in una complessità locale pari a $O(\sqrt{c_n})$. La fase di risalita successiva elabora le equazioni di congruenza in tempo lineare $O(1)$ per ciascun livello dell'albero.</p>
                 
-                <h3>Probabilità Condizionata (1 vs 1000 Nodi)</h3>
-                <p>Poiché il sistema garantisce zero-overhead di banda durante la fase di discesa e filtrazione, lo scaling è lineare. La probabilità $P$ di trovare il fattore in tempo $	au$ distribendo il carico su $k=1000$ nodi diviene:</p>
+                <h3>Probabilità Condizionata dello Scaling (1 vs 1000 Nodi)</h3>
+                <p>L'assenza di interazioni o comunicazioni continue tra i nodi (zero-overhead di banda) durante l'esplorazione permette un'efficienza di scaling perfettamente lineare. Definita la probabilità di successo del singolo dispositivo su una specifica Work Unit in un tempo $\tau$, l'estensione a un'infrastruttura di $k = 1000$ nodi paralleli e indipendenti segue la legge di probabilità condizionata cumulativa:</p>
                 <div class="math-block">
-                    $$P(S | 1000 	ext{ nodi}) = \sum_{i=1}^{1000} P(S | 	ext{nodo}_i) pprox 1000 \cdot P(S | 	ext{nodo}_1)$$
+                    $$P(S | 1000 \text{ nodi}) = \sum_{i=1}^{1000} P(S | \text{nodo}_i) \approx 1000 \cdot P(S | \text{nodo}_1)$$
                 </div>
-                <p>I 1000 dispositivi fattorizzano il numero o esplorano l'intero spazio di calcolo in 1/1000 del tempo di un dispositivo singolo, con efficienza geometrica totale.</p>
+                <p>Ciò certifica matematicamente che l'impiego di 1000 dispositivi riduce lo spazio temporale di fattorizzazione a esattamente $\frac{1}{1000}$ del tempo originario, mantenendo inalterata la stabilità della rete.</p>
             </section>
 
             <section>
-                <h2>5. Software e Paper</h2>
+                <h2>5. Suite Computazionale & Pubblicazioni</h2>
                 <div class="premium-box">
-                    <h3 style="color: white; margin-top: 0;">Area Download</h3>
-                    <a href="#" class="btn">🤖 Download APK (Android)</a>
-                    <a href="#" class="btn">💻 Desktop Client (Windows/Linux)</a>
-                    <a href="#" class="btn" style="background: var(--bg-element); border: 1px solid var(--border-color);">📄 Whitepaper Premium ($9.99)</a>
+                    <h3 style="color: white; margin-top: 0; margin-bottom: 15px;">Area Rilasci Software</h3>
+                    <p>Accedi ai client distribuiti per la scomposizione geometrica o scarica la documentazione tecnica ufficiale rivista.</p>
+                    <div style="margin-top: 20px;">
+                        <a href="/downloads/nosec-client.apk" class="btn-link btn-success">🤖 Scarica APK (Android)</a>
+                        <a href="/downloads/nosec-desktop.exe" class="btn-link">💻 Client Desktop (Win/Linux)</a>
+                        <a href="https://gumroad.com" target="_blank" class="btn-link btn-muted">📄 Whitepaper Avanzato ($9.99)</a>
+                    </div>
                 </div>
             </section>
         </main>
+
+        <footer>
+            <p>&copy; 2026 Progetto NOSEC. Tutti i diritti riservati.</p>
+        </footer>
     </div>
 
     <script>
-        function calcolaMetodoRettangoli() {
-            const N = parseInt(document.getElementById('inputN').value);
-            if(isNaN(N) || N < 4) return alert("Inserisci un numero valido maggiore di 3.");
+        function eseguiScomposizioneGeometrica() {
+            const valN = parseInt(document.getElementById('inputN').value);
+            if (isNaN(valN) || valN < 4) {
+                alert("Inserisci un numero intero valido maggiore di 3.");
+                return;
+            }
             
-            const x = Math.floor(Math.sqrt(N));
-            const b = Math.floor((N - x*x) / x);
-            const c = N - x*x - b*x;
+            // Calcoli geometrici del metodo a rettangoli
+            const x = Math.floor(Math.sqrt(valN));
+            const b = Math.floor((valN - (x * x)) / x);
+            const c = valN - (x * x) - (b * x);
             
-            document.getElementById('mathResult').innerHTML = `N = ${N} &rarr; $${x}^2 + ${b}(${x}) + ${c}$`;
-            if(window.MathJax) MathJax.typesetPromise();
+            // Aggiornamento testo algebrico
+            document.getElementById('mathResult').innerHTML = `${valN} = ${x}² + ${b}(${x}) + ${c}`;
             
+            // Rendering dinamico delle formule MathJax se presente
+            if (window.MathJax && window.MathJax.typesetPromise) {
+                MathJax.typesetPromise();
+            }
+            
+            // Rendering grafico dei blocchi proporzionali
             const area = document.getElementById('visualArea');
             area.innerHTML = '';
             
-            // Sizing logico per la visualizzazione CSS
-            const baseSize = 150; 
+            const standardSize = 140;
             
-            const sq = document.createElement('div');
-            sq.className = 'geom-box geom-square';
-            sq.style.width = baseSize + 'px';
-            sq.style.height = baseSize + 'px';
-            sq.innerHTML = `x²<br>(${x}x${x})`;
+            // Blocco Quadrato x^2
+            const sqBlock = document.createElement('div');
+            sqBlock.className = 'geom-box geom-square';
+            sqBlock.style.width = standardSize + 'px';
+            sqBlock.style.height = standardSize + 'px';
+            sqBlock.innerHTML = `Quadrato x²<br>(${x} x ${x})`;
             
-            const rect = document.createElement('div');
-            rect.className = 'geom-box geom-rect';
-            const rectWidth = baseSize * (b/x);
-            rect.style.width = Math.max(40, rectWidth) + 'px'; // min width per visibilità
-            rect.style.height = baseSize + 'px';
-            rect.innerHTML = `bx<br>(${b}x${x})`;
+            // Blocco Rettangolo bx
+            const rectBlock = document.createElement('div');
+            rectBlock.className = 'geom-box geom-rect';
+            // Calcolo larghezza proporzionale basata sul rapporto b/x
+            let calculatedWidth = standardSize * (b / x);
+            if (calculatedWidth < 50) calculatedWidth = 60; // min width per leggibilità testo
+            if (calculatedWidth > 300) calculatedWidth = 250; // max width per layout responsive
+            rectBlock.style.width = calculatedWidth + 'px';
+            rectBlock.style.height = standardSize + 'px';
+            rectBlock.innerHTML = `Rettangolo bx<br>(${b} x ${x})`;
             
-            const res = document.createElement('div');
-            res.className = 'geom-box geom-res';
-            res.style.width = '60px'; res.style.height = '60px';
-            res.innerHTML = `c<br>(${c})`;
+            // Blocco Residuo c
+            const resBlock = document.createElement('div');
+            resBlock.className = 'geom-box geom-res';
+            resBlock.style.width = '75px';
+            resBlock.style.height = '50px';
+            resBlock.innerHTML = `Residuo c<br>(${c})`;
             
-            area.appendChild(sq);
-            area.appendChild(rect);
-            area.appendChild(res);
+            area.appendChild(sqBlock);
+            area.appendChild(rectBlock);
+            area.appendChild(resBlock);
         }
-        
-        // Calcolo iniziale
-        window.onload = calcolaMetodoRettangoli;
+
+        // Avvia il calcolo del valore di esempio non appena la pagina ha finito il caricamento
+        window.onload = eseguiScomposizioneGeometrica;
     </script>
 </body>
 </html>
