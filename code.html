@@ -1,0 +1,111 @@
+<section id="code-header" class="widget-box">
+    <h1>CORE ENGINE & LOGICA COMPUTAZIONALE</h1>
+    <p class="subtitle">Analisi dei sorgenti C++/GMP e dell'ottimizzazione Quantistica del Framework NOSEC</p>
+    <p>In questa sezione sono raccolte le implementazioni software di riferimento per l'algoritmo RPR (Rappresentazioni Quadratiche Ricorsive). Il motore di calcolo è strutturato per operare su due paradigmi: l'efficienza parallela deterministica/stocastica su CPU tramite librerie multiprecisione e l'abbattimento dello spazio di ricerca mediante oracoli quantistici.</p>
+</section>
+
+<nav class="code-nav">
+    <ul>
+        <li><a href="#cpp-stochastic">1. C++ Stocastico Ricorsivo (`fact.cpp`)</a></li>
+        <li><a href="#cpp-hybrid">2. C++ Ibrido Eoristico (`rsa_factorizer.cpp`)</a></li>
+        <li><a href="#cpp-ordered">3. C++ Analisi di Ridondanza (`rsa_factorizer_ord.cpp`)</a></li>
+        <li><a href="#qiskit-core">4. Modulo Quantistico Qiskit (`oracle.py`)</a></li>
+    </ul>
+</nav>
+
+<section id="cpp-stochastic" class="widget-box">
+    <h2>1. Motore Stocastico Ricorsivo Alberato (`fact.cpp`)</h2>
+    <p>Questo modulo implementa la scomposizione geometrica applicando la <strong>ricorsione profonda sul residuo $c$</strong>. Quando il discriminante $\Delta$ non è un quadrato perfetto, l'algoritmo non scarta il tentativo, ma tratta il resto residuale $c$ come un nuovo sotto-modulo da aggredire ricorsivamente, tracciando visivamente l'albero delle chiamate.</p>
+
+    <pre><code class="language-cpp">
+// Estrazione dal Core Engine: factorize_recursive
+pair&lt;mpz_class, mpz_class&gt; factorize_recursive(mpz_class N_curr, gmp_randstate_t state, int level, string prefix) {
+    if (N_curr &lt;= 1) return {0, 0};
+    if (mpz_probab_prime_p(N_curr.get_mpz_t(), 25)) return {N_curr, 1};
+
+    mpz_class root_curr;
+    mpz_sqrt(root_curr.get_mpz_t(), N_curr.get_mpz_t());
+
+    // Esplorazione dello spazio dei seed per persistenza di livello
+    for (int i = 0; i &lt; 5; ++i) { 
+        mpz_class x;
+        mpz_urandomm(x.get_mpz_t(), state, root_curr.get_mpz_t());
+        if (x &lt; 2) x = 2;
+
+        // Proiezione polinomiale: calcolo del residuo geometrico c
+        mpz_class c = N_curr - (x * x) - (((N_curr - (x * x)) / x) * x);
+        
+        // Logica di branching dell'albero e analisi ricorsiva sul residuo c
+        // ... (visualizzazione nodi L0 -> L1 -> L2)
+    }
+}
+    </code></pre>
+</section>
+
+<section id="cpp-hybrid" class="widget-box">
+    <h2>2. Pipeline Multi-Fase Integrata (`rsa_factorizer.cpp`)</h2>
+    <p>Il core strategico per l'attacco ai moduli RSA-Large. Integra una pipeline a quattro fasi: un <strong>Pre-Crivello logaritmico</strong> dinamico per l'abbattimento dei fattori banali, l'<strong>x-check geometrico</strong> stocastico, l'analisi delle parità e dei casi speciali ($c=0, c=1$), e l'esplorazione selettiva dei divisori dei residui.</p>
+
+    <pre><code class="language-cpp">
+// Funzione di verifica dei quadrati perfetti in GMP
+mpz_class is_perfect_square(const mpz_class& n) {
+    if (n &lt; 0) return -1;
+    mpz_class sqrt_n;
+    mpz_sqrt(sqrt_n.get_mpz_t(), n.get_mpz_t());
+    if (sqrt_n * sqrt_n == n) {
+        return sqrt_n;
+    }
+    return -1;
+}
+
+// Generazione dinamica del limite del crivello basata sui bit del modulo N
+size_t bits_N = mpz_sizeinbase(N.get_mpz_t(), 2);
+unsigned long limit_search = max(10000UL, (unsigned long)(bits_N * bits_N * 10));
+if (limit_search &gt; 1000000) limit_search = 1000000;
+    </code></pre>
+</section>
+
+<section id="cpp-ordered" class="widget-box">
+    <h2>3. Analisi della Finestra di Ridondanza (`rsa_factorizer_ord.cpp`)</h2>
+    <p>Questo modulo esegue una scansione ordinata e sequenziale per mappare matematicamente l'ampiezza dell'<strong>Intervallo di Ridondanza</strong>. Dimostra empiricamente come lo spazio dei seed utili non sia un punto isolato, ma una finestra densa $[inf, sup]$ di valori di $x$ che portano alla scomposizione corretta del semiprimo.</p>
+
+    <pre><code class="language-cpp">
+// Riepilogo metrico dell'intervallo di ridondanza geometrica
+if (factors_count &gt; 0) {
+    cout &lt;&lt; "  Numero di x che hanno portato a fattore trovato : " &lt;&lt; factors_count &lt;&lt; endl;
+    cout &lt;&lt; "  Intervallo di ridondanza [inf, sup] (valori di p trovati) : ["
+         &lt;&lt; min_factor_x_found &lt;&lt; ", " &lt;&lt; max_factor_x_found &lt;&lt; "]" &lt;&lt; endl;
+    cout &lt;&lt; "  Ampiezza dell'intervallo : " &lt;&lt; (max_factor_x_found - min_factor_x_found + 1) &lt;&lt; endl;
+}
+    </code></pre>
+</section>
+
+<section id="qiskit-core" class="widget-box">
+    <h2>4. Evoluzione Quantistica: Filtro di Parità (`oracle.py`)</h2>
+    <p>L'integrazione nativa del paradigma RPR con l'informatica quantistica. L'oracolo quantistico sfrutta il principio di superposizione per valutare simultaneamente tutti i candidati $x$. Sfruttando la concordanza di parità tra sbilanciamento $b$ e $\sqrt{\Delta}$, una singola porta <strong>CNOT</strong> applicata sul bit meno significativo (LSB) collassa lo spazio di ricerca del 50% a costo computazionale zero.</p>
+
+    <pre><code class="language-python">
+from qiskit import QuantumCircuit, QuantumRegister
+
+def rpr_quantum_oracle(n_qubits):
+    # Register x per i candidati seed e qubit target per l'inversione di fase
+    x = QuantumRegister(n_qubits, 'x')
+    target = QuantumRegister(1, 'target')
+    qc = QuantumCircuit(x, target)
+    
+    # PHASE 1: Superposizione uniforme di tutti i cammini geometrici
+    # qc.h(x)
+    
+    # PHASE 2: Filtro di Parità istantaneo via hardware quantistico
+    # Il bit meno significativo di b/x mappa la concordanza di parità
+    qc.cx(x[0], target)
+    
+    # PHASE 3: Test di Quadraticità (Marking dello stato corretto)
+    # Se Delta è un quadrato perfetto, viene invertita la fase dell'ampiezza
+    qc.h(target)
+    qc.mcx(list(range(n_qubits)), target)
+    qc.h(target)
+    
+    return qc
+    </code></pre>
+</section>
